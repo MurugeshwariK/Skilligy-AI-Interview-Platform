@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.wav
+*.webm
+backend/uploads/
+venv/
+.env
+face_landmarker.task

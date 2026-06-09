@@ -1,0 +1,16 @@
+# Virtual environments
+venv/
+venv310/
+backend/venv310/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# Optional (recommended)
+uploads/
+*.sqlite3
+.DS_Store

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Interview Practice</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Skilligy</div>
+
+        <nav>
+            <a href="/" class="nav-item">🏠 <span>Dashboard</span></a>
+            <a href="/resume" class="nav-item">📄 <span>Resume</span></a>
+            <a href="/practice" class="nav-item active">🎯 <span>Practice</span></a>
+        </nav>
+
+        <button class="collapse-btn" onclick="toggleSidebar()">⇆</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <h3>Voice Interview Practice</h3>
+        </header>
+
+        <section class="content-area">
+
+            <div class="panel">
+
+                <h2>Interview Question</h2>
+
+                <!-- Question -->
+                <div class="question-box section-spacing" id="questionText">
+                    {{ question }}
+                </div>
+
+                <!-- Mode Switch -->
+                <div class="mode-switch section-spacing">
+                    <span style="font-size:14px;color:var(--text-muted);margin-right:10px;">
+                        Answer Mode
+                    </span>
+
+                    <a href="/interview" class="mode-btn">Text</a>
+                    <span class="mode-btn active">Voice</span>
+                </div>
+
+                <!-- Recording Controls -->
+                <div class="button-row section-spacing">
+                    <button onclick="startRecording()">🎤 Start Recording</button>
+                    <button onclick="stopRecording()">⏹ Stop Recording</button>
+                </div>
+
+                <!-- Status -->
+                <p id="warning" style="color:#c07a6a;"></p>
+                <p id="status" class="section-spacing">
+                    Press Start and speak your answer.
+                </p>
+
+            </div>
+
+            <!-- Result Panel -->
+            <div class="panel section-spacing-lg">
+
+                <h3>Voice Analysis</h3>
+
+                <div id="resultBox" class="section-spacing">
+                    <!-- AI feedback appears here -->
+                </div>
+
+                <!-- Next Button -->
+                <div class="section-spacing">
+                    <form action="/next" method="post">
+                        <button type="submit">
+                            Next Question
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+}
+</script>
+
+<script src="/static/js/voice_interview.js"></script>
+
+</body>
+</html>

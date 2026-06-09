@@ -1,0 +1,37 @@
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Skilligy</div>
+
+        <nav>
+            <a href="/" class="nav-item">🏠 <span>Dashboard</span></a>
+            <a href="/resume" class="nav-item">📄 <span>Resume</span></a>
+            <a href="/practice" class="nav-item">🎯 <span>Practice</span></a>
+        </nav>
+
+        <button class="collapse-btn" onclick="toggleSidebar()">⇆</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="topbar">
+            <h3>Page Title</h3>
+        </header>
+
+        <section class="content-area">
+            <!-- Your existing page content goes here -->
+        </section>
+    </main>
+
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+}
+</script>
+
+</body>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skilligy – Interview Preparation Platform</title>
+
+    <!-- Premium Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar" id="sidebar">
+
+<div class="logo">Skilligy</div>
+
+<nav>
+
+<a href="/" class="nav-item">
+<i data-lucide="layout-dashboard"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/resume" class="nav-item">
+<i data-lucide="file-text"></i>
+<span>Resume Analysis</span>
+</a>
+
+<a href="/practice" class="nav-item">
+<i data-lucide="target"></i>
+<span>Interview Practice</span>
+</a>
+
+<a href="/end" class="nav-item">
+<i data-lucide="bar-chart-3"></i>
+<span>Results</span>
+</a>
+
+</nav>
+<button class="collapse-btn" onclick="toggleSidebar()">⟨</button>
+
+</aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+            <h3>Dashboard</h3>
+        </header>
+
+        <!-- ================= PAGE CONTENT ================= -->
+        <section class="content-area">
+
+            <!-- ================= HERO SECTION ================= -->
+            <div class="panel hero-panel">
+
+                <div class="hero-left">
+                    <h1>Smarter Interview Preparation</h1>
+
+                    <p class="hero-subtitle">
+                        A structured platform for resume analysis, guided practice,
+                        and performance feedback designed to simulate real interview environments.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="/resume">
+                            <button class="cta-btn">Start Preparation</button>
+                        </a>
+
+                        <a href="/practice_select">
+                            <button class="secondary-btn">Explore Practice</button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="floating-card">
+                        <h3>Performance Overview</h3>
+                        <ul>
+                            <li>✔ Resume match insights</li>
+                            <li>✔ Behavioral practice</li>
+                            <li>✔ Technical preparation</li>
+                            <li>✔ Structured feedback</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ================= FEATURE GRID ================= -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <h2>Resume Analysis</h2>
+                    <p>
+                        Identify skill gaps and measure alignment with your target role.
+                    </p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Behavioral Practice</h2>
+                    <p>
+                        Practice real-world interview questions with guided evaluation.
+                    </p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Technical Preparation</h2>
+                    <p>
+                        Strengthen role-specific technical concepts through structured sessions.
+                    </p>
+                </div>
+
+                <div class="stat-card">
+                    <h2>Voice & Video Mode</h2>
+                    <p>
+                        Experience realistic response simulations beyond text input.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ================= WORKFLOW ================= -->
+            <div class="panel">
+                <h2>How Skilligy Works</h2>
+
+                <div class="timeline">
+                    <div class="timeline-step">① Upload Resume & Select Role</div>
+                    <div class="timeline-step">② Review Match Insights & Skill Gaps</div>
+                    <div class="timeline-step">③ Choose Behavioral or Technical Practice</div>
+                    <div class="timeline-step">④ Receive Structured Feedback & Score</div>
+                </div>
+            </div>
+
+            <!-- ================= VALUE SECTION ================= -->
+            <div class="panel">
+                <h2>Why Choose Skilligy?</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Realistic Simulation</h3>
+                        <p>
+                            Practice in structured scenarios that reflect real interviews.
+                        </p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Actionable Feedback</h3>
+                        <p>
+                            Clear strengths, improvement areas, and practical suggestions.
+                        </p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Focused Preparation</h3>
+                        <p>
+                            Tailored sessions aligned with your target role and experience level.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+}
+</script>
+
+</body>
+</html>
+<script>
+lucide.createIcons();
+</script>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Interview Practice</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/js/interview.js" defer></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+<div class="logo">Skilligy</div>
+
+<nav>
+
+<a href="/" class="nav-item">
+<i data-lucide="layout-dashboard"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/resume" class="nav-item">
+<i data-lucide="file-text"></i>
+<span>Resume Analysis</span>
+</a>
+
+<a href="/practice" class="nav-item">
+<i data-lucide="target"></i>
+<span>Interview Practice</span>
+</a>
+
+<a href="/end" class="nav-item">
+<i data-lucide="bar-chart-3"></i>
+<span>Results</span>
+</a>
+
+</nav>
+
+<button class="collapse-btn" onclick="toggleSidebar()">⇆</button>
+
+</aside>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-content">
+
+<header class="topbar">
+<h3>Interview Practice</h3>
+</header>
+
+
+<section class="content-area">
+
+
+<!-- ================= QUESTION PANEL ================= -->
+
+<div class="panel">
+
+<h2>Question {{ q_no }} of {{ total }}</h2>
+
+
+<!-- QUESTION TEXT -->
+
+<div id="questionText" class="question-box section-spacing">
+
+<p id="interview-question">
+{{ question }}
+</p>
+
+<button
+type="button"
+id="speak-question-btn"
+class="secondary-btn section-spacing">
+🔊 Hear Question
+</button>
+
+</div>
+
+
+<!-- MODE SWITCH -->
+
+<div class="mode-switch section-spacing">
+
+<button
+type="button"
+id="textBtn"
+class="mode-btn active"
+onclick="setMode('text')">
+Text
+</button>
+
+<button
+type="button"
+id="voiceBtn"
+class="mode-btn"
+onclick="setMode('voice')">
+Voice
+</button>
+
+<button
+type="button"
+id="videoBtn"
+class="mode-btn"
+onclick="setMode('video')">
+Video
+</button>
+
+</div>
+
+
+<!-- ================= TEXT MODE ================= -->
+
+<div id="textMode" class="section-spacing">
+
+<form action="/answer" method="post">
+
+<textarea
+name="answer"
+rows="6"
+placeholder="Type your answer here..."
+required></textarea>
+
+<div class="section-spacing">
+<button type="submit">
+Submit Answer
+</button>
+</div>
+
+</form>
+
+</div>
+
+
+<!-- ================= VOICE MODE ================= -->
+
+<div id="voiceMode" style="display:none;" class="section-spacing">
+
+<div class="button-row">
+
+<button type="button" onclick="startRecording()">
+🎤 Start Recording
+</button>
+
+<button type="button" onclick="stopRecording()">
+⏹ Stop Recording
+</button>
+
+</div>
+
+<p id="status" class="section-spacing"></p>
+<p id="warning" style="color:red;"></p>
+
+</div>
+
+
+<!-- ================= VIDEO MODE ================= -->
+
+<div id="videoMode" style="display:none;" class="section-spacing">
+
+<div class="video-frame">
+<video id="videoPreview" autoplay muted playsinline></video>
+</div>
+
+<div class="button-row section-spacing">
+
+<button type="button" onclick="startVideo()">
+Start Recording
+</button>
+
+<button type="button" onclick="stopVideo()">
+Stop Recording
+</button>
+
+<button type="button" onclick="submitVideo()">
+Submit Video
+</button>
+<p id="status" class="section-spacing"></p>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= FEEDBACK AREA ================= -->
+
+<div id="feedbackContainer" class="section-spacing-lg">
+<div id="radarChartContainer" style="display:none;" class="section-spacing">
+<div class="panel">
+<h3>Skill Radar</h3>
+<canvas id="skillRadar" height="200"></canvas>
+</div>
+</div>
+{% if feedback %}
+
+<div class="panel feedback-box">
+
+<h3>Performance Overview</h3>
+
+<div class="section-spacing">
+<span class="score-badge">
+Score: {{ feedback.score }}/10
+</span>
+</div>
+
+<div class="report-section positive section-spacing">
+<h3>Strength Areas</h3>
+<ul>
+{% for s in feedback.strengths %}
+<li>{{ s }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="report-section negative section-spacing">
+<h3>Areas for Improvement</h3>
+<ul>
+{% for a in feedback.areas_to_improve %}
+<li>{{ a }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="report-section neutral section-spacing">
+<h3>Actionable Tip</h3>
+<p>{{ feedback.actionable_tip }}</p>
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+
+
+<!-- ================= NEXT BUTTON ================= -->
+
+<div class="next-container section-spacing">
+
+<form action="/next" method="post">
+
+<button id="nextBtn" type="submit">
+Next Question →
+</button>
+
+</form>
+
+</div>
+
+
+
+<!-- ================= SKIP / END ================= -->
+
+<div class="button-row section-spacing">
+
+<form action="/skip" method="post">
+<button type="submit" class="secondary-btn">
+Skip
+</button>
+</form>
+
+<form action="/end" method="post">
+<button type="submit" class="danger-btn">
+End Session
+</button>
+</form>
+
+</div>
+
+
+</section>
+
+</main>
+
+</div>
+
+
+<script>
+lucide.createIcons();
+function toggleSidebar(){
+document.getElementById("sidebar").classList.toggle("collapsed");
+}
+
+</script>
+
+</body>
+</html>

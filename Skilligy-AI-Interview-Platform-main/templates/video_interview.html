@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Interview</title>
+</head>
+<body>
+
+<h2>🎥 Video Interview Practice</h2>
+
+<video id="preview" autoplay muted width="400"></video>
+<br><br>
+
+<button id="start">Start Recording</button>
+<button id="stop" disabled>Stop Recording</button>
+
+<form id="videoForm">
+  <input type="file" id="videoFile" name="file" hidden />
+  <br><br>
+  <button type="submit">Submit Video</button>
+</form>
+
+<pre id="result"></pre>
+
+<script>
+let mediaRecorder;
+let recordedChunks = [];
+
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+  .then(stream => {
+    document.getElementById("preview").srcObject = stream;
+    mediaRecorder = new MediaRecorder(stream);
+
+    mediaRecorder.ondataavailable = e => {
+      if (e.data.size > 0) recordedChunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(recordedChunks, { type: "video/webm" });
+      const file = new File([blob], "video.webm", { type: "video/webm" });
+
+      const input = document.getElementById("videoFile");
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      input.files = dataTransfer.files;
+    };
+  });
+
+document.getElementById("start").onclick = () => {
+  recordedChunks = [];
+  mediaRecorder.start();
+  document.getElementById("start").disabled = true;
+  document.getElementById("stop").disabled = false;
+};
+
+document.getElementById("stop").onclick = () => {
+  mediaRecorder.stop();
+  document.getElementById("start").disabled = false;
+  document.getElementById("stop").disabled = true;
+};
+
+document.getElementById("videoForm").onsubmit = async e => {
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append("file", document.getElementById("videoFile").files[0]);
+
+  const res = await fetch("/video-upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const json = await res.json();
+  document.getElementById("result").textContent =
+    JSON.stringify(json, null, 2);
+};
+</script>
+
+</body>
+</html>

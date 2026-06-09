@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interview Feedback Report</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="card">
+
+  <h1>✅ Interview Practice Completed</h1>
+
+  <p class="subtitle">
+    Below is a professional summary of your interview performance.
+  </p>
+
+  <hr>
+
+  <!-- ================= SKILL SUMMARY ================= -->
+  <h2>📊 Skill-wise Performance</h2>
+  <ul>
+    {% for skill, score in skill_summary.items() %}
+      <li>
+        <b>{{ skill.capitalize() }}:</b>
+        {{ score }}/10
+      </li>
+    {% endfor %}
+  </ul>
+
+  <hr>
+
+  <!-- ================= STRENGTHS ================= -->
+  <h2>✅ Key Strengths</h2>
+  <ul>
+    {% for s in strengths %}
+      <li>{{ s }}</li>
+    {% endfor %}
+  </ul>
+
+  <!-- ================= IMPROVEMENTS ================= -->
+  <h2>⚠ Areas to Improve</h2>
+  <ul>
+    {% for i in improvements %}
+      <li>{{ i }}</li>
+    {% endfor %}
+  </ul>
+
+  <hr>
+
+  <!-- ================= RESTART ================= -->
+  <a href="/" style="display:inline-block;margin-top:30px;">
+    🔁 Start Practice Again
+  </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Interview Results</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- Sidebar -->
+
+<aside class="sidebar" id="sidebar">
+
+<div class="logo">Skilligy</div>
+
+<nav>
+
+<a href="/" class="nav-item">
+<i data-lucide="layout-dashboard"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/resume" class="nav-item">
+<i data-lucide="file-text"></i>
+<span>Resume Analysis</span>
+</a>
+
+<a href="/practice" class="nav-item">
+<i data-lucide="target"></i>
+<span>Interview Practice</span>
+</a>
+
+<a href="/end" class="nav-item">
+<i data-lucide="bar-chart-3"></i>
+<span>Results</span>
+</a>
+
+</nav>
+
+<button class="collapse-btn" onclick="toggleSidebar()">⇆</button>
+
+</aside>
+
+<!-- Main Content -->
+
+<main class="main-content">
+
+<header class="topbar">
+<h3>Interview Results</h3>
+</header>
+
+<section class="content-area">
+
+<div class="panel">
+<h2>
+<i data-lucide="check-circle"></i>
+Interview Completed
+</h2>
+
+
+<p class="section-spacing">
+Here’s a summary of your interview performance.
+</p>
+
+<!-- Summary -->
+
+<div class="summary-grid">
+
+<div class="summary-box">
+<h4>Questions Attempted</h4>
+<p>{{ total_questions }}</p>
+</div>
+
+<div class="summary-box">
+<h4>Average Score</h4>
+<p>{{ average_score }}/10</p>
+</div>
+
+<div class="summary-box">
+<h4>Performance Level</h4>
+
+<p>
+{% if average_score >= 8 %}
+Excellent 
+{% elif average_score >= 6 %}
+Good 
+{% elif average_score >= 4 %}
+Fair ⚠
+{% else %}
+Needs Improvement
+{% endif %}
+</p>
+
+</div>
+
+</div>
+
+<!-- Interview Analytics -->
+
+<div class="report-section neutral section-spacing">
+
+<h3>
+<i data-lucide="bar-chart-3"></i>
+Interview Analytics
+</h3>
+
+<div class="analytics-box">
+
+<div class="summary-box">
+<h4>Text Interview</h4>
+<p>{{ analytics.text_avg }}/10</p>
+</div>
+
+<div class="summary-box">
+<h4>Voice Interview</h4>
+<p>{{ analytics.voice_avg }}/10</p>
+</div>
+
+<div class="summary-box">
+<h4>Video Interview</h4>
+<p>{{ analytics.video_avg }}/10</p>
+</div>
+
+</div>
+
+</div>
+<div class="report-section section-spacing">
+
+<h3>
+<i data-lucide="activity"></i>
+Performance Breakdown
+</h3>
+
+<div class="performance-chart">
+
+<div class="chart-row">
+<span>Text Interview</span>
+<div class="bar">
+<div class="fill" style="width: {{ analytics.text_avg * 10 }}%"></div>
+</div>
+<span>{{ analytics.text_avg }}/10</span>
+</div>
+
+<div class="chart-row">
+<span>Voice Interview</span>
+<div class="bar">
+<div class="fill" style="width: {{ analytics.voice_avg * 10 }}%"></div>
+</div>
+<span>{{ analytics.voice_avg }}/10</span>
+</div>
+
+<div class="chart-row">
+<span>Video Interview</span>
+<div class="bar">
+<div class="fill" style="width: {{ analytics.video_avg * 10 }}%"></div>
+</div>
+<span>{{ analytics.video_avg }}/10</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- Overall Feedback -->
+
+<div class="report-section neutral section-spacing">
+
+<h3>
+<i data-lucide="message-circle"></i>
+Overall Feedback
+</h3>
+
+<p>
+{% if average_score >= 8 %}
+You demonstrated strong communication and well-structured answers. Keep refining your examples and storytelling to perform even better.
+{% elif average_score >= 6 %}
+Your answers were generally clear, but improving structure and confidence will help you perform even better in interviews.
+{% elif average_score >= 4 %}
+Your responses addressed the questions but lacked strong structure. Practice organizing answers more clearly using methods like STAR.
+{% else %}
+This session highlighted areas that need improvement. Spend more time understanding concepts and practice explaining them confidently.
+{% endif %}
+</p>
+
+</div>
+<div class="report-section section-spacing">
+
+<h3>
+<i data-lucide="lightbulb"></i>
+Interview Insights
+</h3>
+<div class="analytics-box">
+
+<div class="summary-box">
+<h4>Strengths</h4>
+<ul>
+{% if strengths %}
+{% for s in strengths %}
+<li>{{ s }}</li>
+{% endfor %}
+{% else %}
+<li>Continue practicing to identify your key strengths.</li>
+{% endif %}
+</ul>
+</div>
+
+<div class="summary-box">
+<h4>Areas to Improve</h4>
+<ul>
+{% if weaknesses %}
+{% for w in weaknesses %}
+<li>{{ w }}</li>
+{% endfor %}
+{% else %}
+<li>No major weaknesses detected in this session.</li>
+{% endif %}
+</ul>
+</div>
+
+<div class="summary-box">
+<h4>Suggestions</h4>
+<ul>
+{% if tips %}
+{% for t in tips %}
+<li>{{ t }}</li>
+{% endfor %}
+{% else %}
+<li>Keep practicing regularly to improve your interview performance.</li>
+{% endif %}
+</ul>
+</div>
+
+</div>
+
+</div>
+
+<!-- Buttons -->
+
+<div class="button-row section-spacing">
+
+<a href="/practice">
+<button>
+Start Practice Again
+</button>
+</a>
+
+<a href="/">
+<button class="secondary-btn">
+Back to Dashboard
+</button>
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<script>
+function toggleSidebar(){
+document.getElementById("sidebar").classList.toggle("collapsed");
+}
+
+lucide.createIcons();
+</script>
+
+</body>
+</html>

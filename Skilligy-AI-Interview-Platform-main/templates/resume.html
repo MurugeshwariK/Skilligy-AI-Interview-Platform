@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Analysis – Skilligy</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+<div class="logo">Skilligy</div>
+
+<nav>
+
+<a href="/" class="nav-item">
+<i data-lucide="layout-dashboard"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/resume" class="nav-item">
+<i data-lucide="file-text"></i>
+<span>Resume Analysis</span>
+</a>
+
+<a href="/practice" class="nav-item">
+<i data-lucide="target"></i>
+<span>Interview Practice</span>
+</a>
+
+<a href="/end" class="nav-item">
+<i data-lucide="bar-chart-3"></i>
+<span>Results</span>
+</a>
+
+</nav>
+<button class="collapse-btn" onclick="toggleSidebar()">⇆</button>
+  
+
+</aside>
+
+    <!-- ================= MAIN ================= -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <h3>Resume Analysis</h3>
+        </header>
+
+        <section class="content-area">
+
+            <!-- Intro Panel -->
+            <div class="panel">
+                <h1 class="page-title">Resume Review Module</h1>
+                <p class="page-description">
+                    Upload your resume and specify the target role to evaluate
+                    skill alignment, identify gaps, and receive structured insights.
+                </p>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="panel upload-panel">
+
+                <form action="/resume-analyze" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="resume">Upload Resume (PDF)</label>
+                        <div class="file-upload">
+                            <input type="file" id="resume" name="resume" accept=".pdf" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="job_role">Target Job Role</label>
+                        <input 
+                            type="text" 
+                            id="job_role" 
+                            name="job_role" 
+                            placeholder="e.g. Frontend Developer, Data Analyst" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="cta-btn">
+                            Analyze Resume →
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- Info Section -->
+            <div class="panel info-panel">
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h3>Skill Matching</h3>
+                        <p>Compare your resume against job role expectations.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Gap Detection</h3>
+                        <p>Highlight missing competencies and improvement areas.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>Preparation Direction</h3>
+                        <p>Get clarity on what to focus on before interviews.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+}
+</script>
+
+</body>
+</html>
+<script>
+lucide.createIcons();
+</script>

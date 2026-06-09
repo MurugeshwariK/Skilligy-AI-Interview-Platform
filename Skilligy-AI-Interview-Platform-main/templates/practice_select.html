@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Practice Interview</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Skilligy</div>
+
+       <nav>
+
+<a href="/" class="nav-item">
+<i data-lucide="layout-dashboard"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/resume" class="nav-item">
+<i data-lucide="file-text"></i>
+<span>Resume Analysis</span>
+</a>
+
+<a href="/practice" class="nav-item">
+<i data-lucide="target"></i>
+<span>Interview Practice</span>
+</a>
+
+<a href="/end" class="nav-item">
+<i data-lucide="bar-chart-3"></i>
+<span>Results</span>
+</a>
+
+</nav>
+
+        <button class="collapse-btn" onclick="toggleSidebar()">⇆</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <h3>Interview Practice</h3>
+        </header>
+
+        <section class="content-area">
+
+            <!-- Hero Panel -->
+            <div class="panel hero-panel">
+
+                <div class="hero-left">
+                    <h1>Practice Your Interview Skills</h1>
+
+                    <p class="hero-subtitle">
+                        Choose a practice mode and start preparing for your next interview.
+                        You can simulate HR interviews or technical interviews to improve
+                        your confidence and communication.
+                    </p>
+                </div>
+
+                <div class="floating-card">
+                    <h3>Practice Tips</h3>
+                    <p style="margin-top:10px; font-size:14px;">
+                        • Be clear and structured<br>
+                        • Think before answering<br>
+                        • Maintain confidence<br>
+                        • Practice regularly
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Practice Selection Cards -->
+            <div class="stats-grid">
+
+                <!-- HR PRACTICE -->
+                <div class="stat-card">
+
+                    <h3>HR / Behavioral Interview</h3>
+
+                    <p style="margin:10px 0; font-size:14px; color:var(--text-muted);">
+                        Practice common HR questions such as introductions,
+                        strengths, weaknesses, and behavioral scenarios.
+                    </p>
+
+                    <form action="/start" method="post">
+
+                        <label>Interview Type</label>
+                        <input type="text" value="HR / Behavioral Interview" readonly>
+
+                        <input type="hidden" name="round_type" value="hr">
+                        <input type="hidden" name="role" value="general">
+
+                        <button type="submit" class="section-spacing">
+                            Start HR Interview
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- TECH PRACTICE -->
+                <div class="stat-card">
+
+                    <h3>Technical Interview</h3>
+
+                    <p style="margin:10px 0; font-size:14px; color:var(--text-muted);">
+                        Practice role-specific interview questions for technical
+                        positions like Web Developer, Data Analyst, or Software Engineer.
+                    </p>
+
+                    <form action="/start" method="post">
+
+                        <label>Job Role</label>
+                        <input type="text"
+                               name="role"
+                               placeholder="e.g. Web Developer"
+                               required>
+
+                        <input type="hidden" name="round_type" value="technical">
+
+                        <button type="submit" class="section-spacing">
+                            Start Technical Interview
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("collapsed");
+}
+</script>
+
+</body>
+</html>
+<script>
+lucide.createIcons();
+</script>

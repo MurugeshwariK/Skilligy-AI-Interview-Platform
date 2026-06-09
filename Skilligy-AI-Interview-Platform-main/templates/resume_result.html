@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Report – Skilligy</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+<div class="logo">Skilligy</div>
+
+<nav>
+
+<a href="/" class="nav-item">
+<i data-lucide="layout-dashboard"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/resume" class="nav-item">
+<i data-lucide="file-text"></i>
+<span>Resume Analysis</span>
+</a>
+
+<a href="/practice" class="nav-item">
+<i data-lucide="target"></i>
+<span>Interview Practice</span>
+</a>
+
+<a href="/end" class="nav-item">
+<i data-lucide="bar-chart-3"></i>
+<span>Results</span>
+</a>
+
+</nav>
+<button class="collapse-btn" onclick="toggleSidebar()">⇆</button>
+  
+
+</aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <div class="topbar">
+            Resume Performance Report
+        </div>
+
+        <div class="content-area">
+
+            <div class="report-layout">
+
+                <!-- LEFT SIDE SUMMARY -->
+                <div class="report-summary">
+
+                    <div class="score-circle" id="scoreCircle">
+                        <div id="circleScore">--%</div>
+                    </div>
+
+                    <div class="summary-card">
+                        <h3>Overall Alignment</h3>
+                        <p>
+                            This score reflects how closely your resume matches
+                            the selected job role requirements.
+                        </p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h4>Recommendation</h4>
+                        <p id="recommendationText">
+                            Evaluating resume performance...
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE DETAILS -->
+                <div class="report-details">
+
+                    <div class="details-card">
+    <h2>Detailed Evaluation</h2>
+
+    <div id="structuredReport"></div>
+</div>
+
+                    <div class="cta-panel">
+                        <form action="/practice" method="get">
+                            <button type="submit">
+                                Proceed to Interview Practice →
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+    lucide.createIcons();
+    const rawText = `{{ result | safe }}`;
+    const container = document.getElementById("structuredReport");
+
+    // Extract match %
+    const match = rawText.match(/(\d+)%/);
+    if (match) {
+        const percent = parseInt(match[1]);
+
+        document.getElementById("circleScore").innerText = percent + "%";
+
+        const circle = document.getElementById("scoreCircle");
+        circle.style.background =
+            `conic-gradient(#5f6f52 ${percent}%, #e4e7e2 ${percent}%)`;
+
+        const rec = document.getElementById("recommendationText");
+
+        if (percent >= 70) {
+            rec.innerText = "Strong alignment. Focus on mock interview refinement.";
+        } else if (percent >= 50) {
+            rec.innerText = "Moderate alignment. Improve missing technical areas.";
+        } else {
+            rec.innerText = "Significant gaps detected. Strengthen fundamentals first.";
+        }
+    }
+
+    // Split sections
+    function createSection(title, content, type) {
+        const section = document.createElement("div");
+        section.className = "report-section " + type;
+
+        const heading = document.createElement("h3");
+        heading.innerText = title;
+
+        const body = document.createElement("div");
+        body.innerText = content.trim();
+
+        section.appendChild(heading);
+        section.appendChild(body);
+
+        container.appendChild(section);
+    }
+
+    const matching = rawText.split("Matching Skills:")[1]?.split("Missing Skills:")[0];
+    const missing = rawText.split("Missing Skills:")[1]?.split("Suggestions:")[0];
+    const suggestions = rawText.split("Suggestions:")[1];
+
+    if (matching) createSection("✔ Strength Areas", matching, "positive");
+    if (missing) createSection("⚠ Improvement Areas", missing, "negative");
+    if (suggestions) createSection("📌 Recommendations", suggestions, "neutral");
+</script>
+</body>
+</html>
