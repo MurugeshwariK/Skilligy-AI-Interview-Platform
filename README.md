@@ -71,30 +71,6 @@ User → Frontend Interface → FastAPI Backend → AI Processing Modules → Sc
 - Uses MediaPipe FaceMesh and OpenCV for behavioral analysis
 - Measures eye contact, face visibility, and engagement
 
----
-
-## Screenshots
-
-### Homepage
-![Homepage](screenshots/homepage.png)
-
-### Resume Analysis
-![Resume Analysis](screenshots/resume-analysis.png)
-
-### Text Interview Mode
-![Text Mode](screenshots/text-mode.png)
-
-### Voice Interview Mode
-![Voice Mode](screenshots/voice-mode.png)
-
-### Video Interview Mode
-![Video Mode](screenshots/video-mode.png)
-
-### Feedback Dashboard
-![Dashboard](screenshots/feedback-dashboard.png)
-
----
-
 ## Future Improvements
 
 - Improved role-specific question generation
